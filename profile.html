@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<label>ACCOUNT</label>
+
+<h1>Student Profile</h1>
+
+<p>Manage your profile and view your enrolled cybersecurity domains.</p>
+
+<div class="twocol">
+
+    <div class="panel center">
+
+        {% if student_url %}
+
+        <img class="photo" src="{{student_url}}">
+
+        {% else %}
+
+        <div class="photo placeholder">T</div>
+
+        {% endif %}
+
+        <h2>Tariq</h2>
+
+        <small>Cybersecurity Student</small>
+
+        <hr>
+
+        <p>
+            <b>Community</b>
+            <br>
+            Zero Trust Pro
+        </p>
+
+        <form method="post" action="/profile/upload" enctype="multipart/form-data">
+
+            <input type="hidden" name="asset_type" value="student">
+
+            <input type="file" name="file" accept=".png,.jpg,.jpeg,.webp" required>
+
+            <button>Upload Student Photo</button>
+
+        </form>
+
+    </div>
+
+    <div class="panel">
+
+        <label>ENROLLED DOMAINS</label>
+
+        <h2>Learning portfolio</h2>
+
+        {% for c in courses %}
+
+        <a class="profilecourse" href="/course/{{loop.index0}}">
+
+            <i class="icon i{{loop.index}}">{{c.short}}</i>
+
+            <div>
+
+                <b>{{c.name}}</b>
+
+                <small>{{c.progress}}% • {{c.status}}</small>
+
+                <div class="bar">
+
+                    <i style="width:{{c.progress}}%"></i>
+
+                </div>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="panel brandupload">
+
+    <div class="brandpreview">
+
+        {% if logo_url %}
+
+        <img src="{{logo_url}}">
+
+        {% else %}
+
+        <b>ZT</b>
+
+        <span>ZERO TRUST PRO</span>
+
+        <small>Cyber Security Community</small>
+
+        {% endif %}
+
+    </div>
+
+    <div>
+
+        <label>BRAND ASSET</label>
+
+        <h2>Zero Trust Pro logo</h2>
+
+        <p>Upload the official logo on a white background.</p>
+
+        <form method="post" action="/profile/upload" enctype="multipart/form-data">
+
+            <input type="hidden" name="asset_type" value="logo">
+
+            <input type="file" name="file" accept=".png,.jpg,.jpeg,.webp" required>
+
+            <button>Upload Logo</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

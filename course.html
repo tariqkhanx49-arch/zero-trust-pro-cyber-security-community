@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{course.name}}
+{% endblock %}
+
+{% block content %}
+
+<a href="/dashboard">
+    ← Back to dashboard
+</a>
+
+<div class="detail">
+
+    <i class="icon i{{course_id+1}}">
+        {{course.short}}
+    </i>
+
+    <div>
+
+        <label>ENROLLED DOMAIN</label>
+
+        <h1>
+            {{course.name}}
+        </h1>
+
+        <p>
+            {{course.description}}
+        </p>
+
+    </div>
+
+    <strong>
+        {{course.progress}}%
+    </strong>
+
+</div>
+
+<div class="twocol">
+
+    <div class="panel">
+
+        <label>CURRICULUM</label>
+
+        <h2>
+            Course modules
+        </h2>
+
+        {% for m in course.modules %}
+
+        <div class="module">
+
+            ✓　<b>Module {{loop.index}}</b>　{{m}}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="panel center">
+
+        <label>YOUR PROGRESS</label>
+
+        <div class="ring" style="--p:{{course.progress*3.6}}deg">
+
+            <b>
+                {{course.progress}}%
+            </b>
+
+        </div>
+
+        <p>
+            {{course.status}}
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

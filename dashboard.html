@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+
+    <div>
+
+        <label>STUDENT DASHBOARD</label>
+
+        <h1>
+            Good to see you, <span>Tariq.</span>
+        </h1>
+
+        <p>
+            Track your progress and strengthen your cybersecurity skills.
+        </p>
+
+    </div>
+
+    <div class="badge">
+        ✓ Active Learner
+        <br>
+        <small>4 domains enrolled</small>
+    </div>
+
+</div>
+
+<div class="stats">
+
+    <div>
+        <b>4</b>
+        <small>Enrolled Domains</small>
+    </div>
+
+    <div>
+        <b>1</b>
+        <small>Completed Domain</small>
+    </div>
+
+    <div>
+        <b>93.5%</b>
+        <small>Overall Progress</small>
+    </div>
+
+    <div>
+        <b>4</b>
+        <small>Active Tracks</small>
+    </div>
+
+</div>
+
+<h2>Enrolled domains</h2>
+
+<div class="grid">
+
+    {% for c in courses %}
+
+    <a class="course" href="/course/{{loop.index0}}">
+
+        <div class="top">
+
+            <i class="icon i{{loop.index}}">
+                {{c.short}}
+            </i>
+
+            <em>
+                {{c.status}}
+            </em>
+
+        </div>
+
+        <h3>
+            {{c.name}}
+        </h3>
+
+        <p>
+            {{c.description}}
+        </p>
+
+        <div class="row">
+            Progress
+            <b>
+                {{c.progress}}%
+            </b>
+        </div>
+
+        <div class="bar">
+            <i style="width:{{c.progress}}%"></i>
+        </div>
+
+        <small>
+            {{c.modules|length}} modules　→ Open
+        </small>
+
+    </a>
+
+    {% endfor %}
+
+</div>
+
+<div class="security">
+
+    ◇　<b>Build with a security-first mindset</b>
+
+    <small>
+        Keep learning across cloud, networking, security fundamentals and SOC operations.
+    </small>
+
+</div>
+
+{% endblock %}
